@@ -58,7 +58,7 @@ O projeto utiliza a biblioteca [Rocketry](https://rocketry.readthedocs.io/) para
 ### Execução Manual
 Com o ambiente virtual ativo, execute:
 ```bash
-python bot.py
+python3 bot.py
 ```
 
 ### Execução via Script (Linux/macOS)

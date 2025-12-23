@@ -2,6 +2,7 @@
 
 # Navega para o diretório onde o script está localizado
 cd "$(dirname "$0")"
+git pull origin main
 
 # Ativa o ambiente virtual
 if [ -d ".venv" ]; then
