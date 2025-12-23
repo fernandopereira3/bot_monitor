@@ -34,7 +34,7 @@ O bot opera com dois comportamentos distintos para garantir cobertura total do m
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/Leon_bot.git
+git clone https://github.com/fernandopereira3/bot_monitor.git
 cd Leon_bot
 ```
 
