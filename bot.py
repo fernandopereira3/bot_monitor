@@ -37,7 +37,7 @@ def calculo_hora():
     return f"{horas}h {minutos}m"
     
 
-@app.task("every 1 minute")
+@app.task("every 1 hour")
 def monitora():
     """
     Função responsável por enviar o e-mail usando as configurações do .env
