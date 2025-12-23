@@ -13,5 +13,5 @@ else
 fi
 
 # Executa o bot
-echo "Iniciando o Leon Bot..."
-python3 bot.py
+nohup python3 bot.py > bot.log 2>&1 &
+echo "Leon Bot iniciado em segundo plano."
