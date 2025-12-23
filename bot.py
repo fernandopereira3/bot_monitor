@@ -8,6 +8,7 @@ from rocketry import Rocketry
 
 # Configuração de logging
 logging.basicConfig(
+    filename='email.log',
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
@@ -77,8 +78,7 @@ def start():
             server.starttls()
             server.login(email_address, email_password)
             server.send_message(msg)
-            
-        logging.info(f"Email enviado com sucesso para {email_to}")
+
 
     except Exception as e:
         logging.error(f"Erro ao enviar email: {e}")

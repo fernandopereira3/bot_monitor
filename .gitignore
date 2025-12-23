@@ -139,3 +139,4 @@ cython_debug/
 .vscode/
 *.swp
 .DS_Store
+*.log
