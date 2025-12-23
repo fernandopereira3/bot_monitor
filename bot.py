@@ -16,14 +16,35 @@ logging.basicConfig(
 # Carregar variáveis de ambiente
 load_dotenv()
 
+# Armazena o horário de início da execução do script
+START_TIME = datetime.now()
+
 app = Rocketry()
 
-@app.task("every 1 hour")
-def horario():
+def calculo_hora():
+    """
+    Função responsável por calcular o tempo de atividade (uptime).
+    """
+    agora = datetime.now()
+    diferenca = agora - START_TIME
+    
+    segundos_totais = int(diferenca.total_seconds())
+    horas, resto = divmod(segundos_totais, 3600)
+    minutos, _ = divmod(resto, 60)
+    
+    if diferenca.days > 0:
+        return f"{diferenca.days} dias, {horas}h {minutos}m"
+    return f"{horas}h {minutos}m"
+    
+
+@app.task("every 1 minute")
+def monitora():
     """
     Função responsável por enviar o e-mail usando as configurações do .env
     """
     now_str = datetime.now().strftime('%d/%m/%Y %H:%M')
+    tempo_atividade = calculo_hora()
+
     try:
         email_address = os.getenv('EMAIL_ADDRESS')
         email_password = os.getenv('EMAIL_PASSWORD')
@@ -39,7 +60,7 @@ def horario():
         msg['Subject'] = 'Bot Notification'
         msg['From'] = email_address
         msg['To'] = email_to
-        msg.set_content(f'Olá! Este é um aviso automático do Leon Bot. A hora atual é: {now_str}')
+        msg.set_content(f'Olá! Agora é: {now_str} . O Leon está a {tempo_atividade} no computador.')
 
         with smtplib.SMTP(smtp_server, smtp_port) as server:
             server.starttls()
@@ -50,6 +71,8 @@ def horario():
 
     except Exception as e:
         logging.error(f"Erro ao enviar email: {e}")
+
+#########################################################################
 
 def start():
     """
@@ -83,9 +106,10 @@ def start():
     except Exception as e:
         logging.error(f"Erro ao enviar email: {e}")
 
+    app.run()
+
 
 
 if __name__ == "__main__":
     logging.info("Bot iniciado com Rocketry. Agendando envio de email a cada 1 hora.")
     start()
-    app.run()

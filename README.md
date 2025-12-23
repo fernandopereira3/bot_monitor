@@ -14,7 +14,7 @@ O bot opera com dois comportamentos distintos para garantir cobertura total do m
     Assim que o script é executado (idealmente configurado para iniciar junto com o sistema operacional), ele dispara um e-mail imediato informando: *"O Leon ligou o PC às [HORA]"*. Isso serve como alerta de que a máquina ficou online.
 
 2.  **Monitoramento Contínuo (Heartbeat)**:
-    Utilizando o framework **Rocketry**, o bot entra em um ciclo de agendamento inteligente. A cada **1 hora**, ele envia uma notificação de status confirmando que o sistema continua ativo e conectado à internet.
+    Utilizando o framework **Rocketry**, o bot entra em um ciclo de agendamento inteligente. A cada **1 hora**, ele envia uma notificação de status confirmando que o sistema continua ativo, incluindo o **tempo total de atividade (uptime)** desde a inicialização.
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -27,6 +27,7 @@ O bot opera com dois comportamentos distintos para garantir cobertura total do m
 
 - ✅ **Alerta Instantâneo de Boot**: Saiba o minuto exato em que o computador foi ligado.
 - ✅ **Confirmação de Atividade Horária**: Receba atualizações periódicas garantindo que o PC não travou ou desligou.
+- ✅ **Cálculo de Uptime**: O e-mail informa exatamente há quanto tempo o script/sistema está rodando (ex: "2 dias, 5h 30m").
 - ✅ **Logging Detalhado**: Registro de operações e erros no console para fácil diagnóstico.
 - ✅ **Segurança de Credenciais**: Separação total entre lógica e configurações sensíveis (`.env`).
 
